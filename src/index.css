@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0b0c0a;
+  --ink-2: #141512;
+  --ink-3: #1c1e19;
+  --paper: #efe8db;
+  --paper-2: #e4dccb;
+  --gold: #c9a36a;
+  --gold-2: #e8d5a8;
+  --lime: #c8f54a;
+  --fog: #8d897e;
+  --line: rgba(201, 163, 106, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--gold);
+  color: var(--ink);
+}
+
+.font-serif {
+  font-family: "Instrument Serif", Georgia, serif;
+}
+
+.font-mono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+}
+
+.grid-fine {
+  background-image:
+    linear-gradient(rgba(201, 163, 106, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201, 163, 106, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0c0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2c26;
+  border-radius: 99px;
+}
+
+.nexo-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  animation: rise 0.55s ease both;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.7);
+  }
+}
+
+.live-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+.flow-line {
+  stroke-dasharray: 6 6;
+  animation: dash 1.2s linear infinite;
+}
+
+input,
+select,
+textarea,
+button {
+  font-family: inherit;
+}
+
+.mask-fade {
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+@media print {
+  body {
+    background: #fff !important;
+  }
+  body * {
+    visibility: hidden !important;
+  }
+  #print-area,
+  #print-area * {
+    visibility: visible !important;
+  }
+  #print-area {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none !important;
+    background: #fff !important;
+  }
+}
